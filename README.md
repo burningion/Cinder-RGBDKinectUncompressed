@@ -18,7 +18,13 @@ Nope, now it exports pngs at a framerate of 24p. If you need a different framera
 
 Download Cinder, and move repo in the Cinder's sample directory. I've only built and run it on Mac, hence the Unix filenames.
 
-You'll still need to use ffmpeg to get your video back to something usable. Commands to come.
+You'll still need to use ffmpeg to get your video back to something usable. 
+
+To do this, go through the generated images, and find a place where your clap matches up to your video. Write down this number. In my case, the frame number was 144. The -start_number flag tells ffmpeg where to start from.
+
+```bash
+ffmpeg -r 24 -start_number 144 -i output%03d.png -c:v libx264 -pix_fmt yuv420p out.mp4
+```
 
 ~~If you haven't noticed, my keyboard's period button has stopped working.~~
 
